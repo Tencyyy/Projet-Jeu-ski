@@ -1,5 +1,8 @@
 Projet du groupe 1 - Jeux olympiques d'hiver 2026
 
+
+
+
 Contexte:
 
 Jeu de ski type "runner": on descend la piste, on doit passer entre des portes
@@ -62,7 +65,7 @@ Jour 4 - Esthetisme + finitions:
 - Musique/sons legers.
 - Tests finaux et corrections.
 
-Regles de travail pour debutants:
+Regles de travail:
 - Toujours tester souvent (petites modifications).
 - Si un bug apparait, revenir a la derniere version qui marchait.
 - Garder le code simple, pas besoin de fonctions compliquees.
@@ -77,3 +80,8 @@ Touches:
 - P: pause
 - R: rejouer (apres game over)
 - ECHAP: quitter
+
+Tuto/Aide:
+
+https://www.w3schools.com/python/
+Youtube
