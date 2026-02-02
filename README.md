@@ -1,6 +1,9 @@
 Projet du groupe 1 - Jeux olympiques d'hiver 2026
 
-
+Michel
+Stephen
+..
+..
 
 
 Contexte:
