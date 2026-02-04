@@ -14,6 +14,7 @@ class Player:
         self.speed = self.base_speed
         self.boost_timer = 0.0
         self.slow_timer = 0.0
+        self.freeze_timer = 0.0
         self.frames = frames
         self.frame_index = 0
         self.frame_timer = 0.0
@@ -29,11 +30,15 @@ class Player:
             self.boost_timer = max(0.0, self.boost_timer - dt)
         if self.slow_timer > 0:
             self.slow_timer = max(0.0, self.slow_timer - dt)
+        if self.freeze_timer > 0:
+            self.freeze_timer = max(0.0, self.freeze_timer - dt)
 
         speed_mult = 1.8 if self.boost_timer > 0 else 1.0
         if self.slow_timer > 0:
             speed_mult *= 0.6
         self.speed = self.base_speed * speed_mult
+        if self.freeze_timer > 0:
+            self.speed = 0.0
 
         move_x = 0
         move_y = 0
@@ -153,12 +158,16 @@ class Drone:
     def __init__(self, x, image):
         # ca c'est pour le drone qui lache parfois un objet
         self.x = x
+        self.base_x = x
         self.y = 60
         self.cooldown = 0.0
         self.image = image
+        self.t = 0.0
 
-    def update(self, dt, target_x):
-        self.x += (target_x - self.x) * 0.05
+    def update(self, dt):
+        self.t += dt
+        sway = math.sin(self.t * 1.2) * 140
+        self.x = self.base_x + sway
         self.cooldown = max(0.0, self.cooldown - dt)
 
     def try_drop(self, obstacles, speed, drop_image):
@@ -171,13 +180,15 @@ class Drone:
 
 
 class Yeti:
-    def __init__(self, x, y, image):
+    def __init__(self, x, y, frames):
         # ca c'est pour le yeti qui poursuit le joueur (il commence derriere)
         self.x = x
         self.y = y
-        self.image = image
-        self.w = image.get_width()
-        self.h = image.get_height()
+        self.frames = frames
+        self.frame_index = 0
+        self.frame_timer = 0.0
+        self.w = frames[0].get_width()
+        self.h = frames[0].get_height()
         self.knockback = 0.0
         self.slow_timer = 0.0
         self.moonwalk_timer = 0.0
@@ -212,5 +223,10 @@ class Yeti:
             self.y = screen_h + 140
             self.x = random.randint(0, screen_w - self.w)
 
+        self.frame_timer += dt
+        if self.frame_timer >= 0.12:
+            self.frame_timer = 0.0
+            self.frame_index = (self.frame_index + 1) % len(self.frames)
+
     def draw(self, screen):
-        screen.blit(self.image, (int(self.x), int(self.y)))
+        screen.blit(self.frames[self.frame_index], (int(self.x), int(self.y)))

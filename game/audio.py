@@ -26,6 +26,8 @@ def build_audio():
             "bonus": _tone(0.18, 520, 0.35),
             "speed": _tone(0.18, 740, 0.35),
             "rock": _tone(0.12, 220, 0.35),
+            "curling_slide": _tone(0.35, 260, 0.25),
+            "arrow_shot": _tone(0.12, 880, 0.3),
             "game_over": _tone(0.5, 180, 0.4),
             "pause": _tone(0.1, 300, 0.25),
             "resume": _tone(0.1, 500, 0.25),

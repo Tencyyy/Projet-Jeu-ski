@@ -3,7 +3,7 @@ import math
 import random
 import pygame
 
-ASSET_VERSION = "v4"
+ASSET_VERSION = "v9"
 
 
 def _asset_dir():
@@ -19,37 +19,61 @@ def ensure_assets():
         pygame.image.save(surf, path)
         return path
 
-    # Skier frames
+    tile_dir = _asset_dir()
+
+    # Skier frames (design plus clean)
     skier_paths = []
-    colors = [(220, 40, 40), (235, 70, 70), (200, 30, 30), (245, 90, 90)]
-    for i, c in enumerate(colors):
-        surf = pygame.Surface((44, 54), pygame.SRCALPHA)
+    suit_colors = [(210, 30, 30), (230, 50, 50), (200, 20, 20), (240, 70, 70)]
+    for i, c in enumerate(suit_colors):
+        surf = pygame.Surface((52, 64), pygame.SRCALPHA)
         ski_offset = (i % 2) * 2
-        # skis avec ombre
-        pygame.draw.line(surf, (20, 20, 20), (2, 46 + ski_offset), (42, 44 - ski_offset), 5)
-        pygame.draw.line(surf, (90, 90, 90), (4, 48 + ski_offset), (40, 46 - ski_offset), 2)
-        # corps
-        pygame.draw.ellipse(surf, c, (12, 14, 20, 24))
-        pygame.draw.ellipse(surf, (170, 20, 20), (13, 16, 18, 10))
-        pygame.draw.rect(surf, (250, 200, 40), (14, 24, 16, 4))
-        pygame.draw.rect(surf, (250, 200, 40), (12, 26, 5, 8))
-        # tete + masque
-        pygame.draw.circle(surf, (255, 224, 200), (22, 12), 6)
-        pygame.draw.arc(surf, (30, 30, 30), (15, 6, 14, 12), math.pi, 2 * math.pi, 3)
-        pygame.draw.rect(surf, (40, 80, 120), (16, 10, 12, 6), border_radius=2)
-        pygame.draw.line(surf, (120, 160, 200), (17, 12), (27, 12), 1)
-        # batons
-        pygame.draw.line(surf, (100, 80, 40), (8, 20), (4, 42), 2)
-        pygame.draw.line(surf, (100, 80, 40), (36, 20), (40, 42), 2)
+        # skis (deux skis bien separes)
+        pygame.draw.line(surf, (20, 20, 20), (4, 52 + ski_offset), (32, 52 + ski_offset), 5)
+        pygame.draw.line(surf, (20, 20, 20), (28, 58 + ski_offset), (50, 58 + ski_offset), 5)
+        pygame.draw.line(surf, (120, 120, 120), (6, 54 + ski_offset), (30, 54 + ski_offset), 2)
+        pygame.draw.line(surf, (120, 120, 120), (30, 60 + ski_offset), (48, 60 + ski_offset), 2)
+        # ombre
+        pygame.draw.ellipse(surf, (0, 0, 0, 45), (12, 44, 30, 12))
+        # corps / veste
+        pygame.draw.ellipse(surf, c, (14, 18, 24, 30))
+        pygame.draw.ellipse(surf, (180, 25, 25), (16, 20, 20, 12))
+        pygame.draw.rect(surf, (255, 210, 60), (16, 32, 20, 5))
+        # jambes
+        pygame.draw.rect(surf, (30, 30, 40), (18, 42, 8, 8))
+        pygame.draw.rect(surf, (30, 30, 40), (28, 42, 8, 8))
+        # tete + casque
+        pygame.draw.circle(surf, (255, 224, 200), (26, 14), 7)
+        pygame.draw.rect(surf, (20, 40, 70), (19, 8, 14, 6), border_radius=2)
+        pygame.draw.line(surf, (150, 190, 230), (20, 11), (32, 11), 1)
+        pygame.draw.arc(surf, (30, 30, 30), (18, 6, 16, 14), math.pi, 2 * math.pi, 3)
+        # batons (pousse vers l'arriere)
+        pygame.draw.line(surf, (110, 90, 50), (16, 26), (6, 54), 2)
+        pygame.draw.line(surf, (110, 90, 50), (36, 26), (46, 56), 2)
+        pygame.draw.circle(surf, (60, 60, 60), (16, 26), 2)
+        pygame.draw.circle(surf, (60, 60, 60), (36, 26), 2)
         skier_paths.append(save_asset(f"skier_{i}_{ASSET_VERSION}.png", surf))
 
-    # Rock
-    rock = pygame.Surface((34, 28), pygame.SRCALPHA)
-    pygame.draw.ellipse(rock, (70, 70, 80), (1, 6, 32, 20))
-    pygame.draw.ellipse(rock, (95, 95, 105), (6, 10, 14, 8))
-    pygame.draw.ellipse(rock, (55, 55, 65), (16, 12, 12, 7))
-    pygame.draw.ellipse(rock, (120, 120, 130), (18, 8, 10, 6))
-    rock_path = save_asset(f"rock_{ASSET_VERSION}.png", rock)
+    # Rock (3 variantes anguleuses)
+    rock_paths = []
+    rock_shapes = [
+        [(4, 22), (10, 10), (24, 6), (38, 10), (42, 20), (32, 28), (18, 30), (8, 28)],
+        [(6, 24), (14, 8), (28, 6), (40, 14), (40, 24), (30, 30), (16, 30), (6, 26)],
+        [(4, 20), (12, 8), (26, 8), (38, 16), (42, 26), (28, 32), (12, 30), (6, 26)],
+    ]
+    for idx, main_poly in enumerate(rock_shapes):
+        rock = pygame.Surface((46, 36), pygame.SRCALPHA)
+        pygame.draw.polygon(rock, (60, 60, 70), main_poly)
+        pygame.draw.polygon(rock, (40, 40, 50), [(main_poly[0][0] + 4, main_poly[0][1] - 2),
+                                                 (main_poly[1][0] + 4, main_poly[1][1] + 2),
+                                                 (main_poly[2][0] - 2, main_poly[2][1] + 4),
+                                                 (main_poly[3][0] - 6, main_poly[3][1] + 6),
+                                                 (main_poly[4][0] - 10, main_poly[4][1] + 4)])
+        pygame.draw.polygon(rock, (110, 110, 120), [(main_poly[1][0] + 6, main_poly[1][1] + 2),
+                                                    (main_poly[2][0] + 2, main_poly[2][1] + 6),
+                                                    (main_poly[3][0] - 4, main_poly[3][1] + 6),
+                                                    (main_poly[2][0] - 2, main_poly[2][1] + 2)])
+        pygame.draw.polygon(rock, (30, 30, 40), main_poly, 1)
+        rock_paths.append(save_asset(f"rock_{idx}_{ASSET_VERSION}.png", rock))
 
     # Bonus (moonwalk)
     bonus = pygame.Surface((26, 26), pygame.SRCALPHA)
@@ -85,48 +109,63 @@ def ensure_assets():
     pygame.draw.circle(drone, (200, 40, 40), (22, 10), 2)
     drone_path = save_asset(f"drone_{ASSET_VERSION}.png", drone)
 
-    # Drone drop
-    drop = pygame.Surface((24, 24), pygame.SRCALPHA)
-    pygame.draw.rect(drop, (50, 50, 50), (3, 5, 18, 14), border_radius=3)
-    pygame.draw.rect(drop, (120, 120, 120), (6, 8, 12, 6), border_radius=2)
-    pygame.draw.rect(drop, (30, 30, 30), (3, 5, 18, 14), 1, border_radius=3)
+    # Drone drop (bloc de glace) plus gros
+    drop = pygame.Surface((32, 32), pygame.SRCALPHA)
+    pygame.draw.rect(drop, (180, 220, 255), (4, 6, 24, 18), border_radius=4)
+    pygame.draw.rect(drop, (120, 180, 230), (8, 10, 16, 8), border_radius=3)
+    pygame.draw.line(drop, (220, 240, 255), (8, 12), (22, 12), 1)
+    pygame.draw.rect(drop, (80, 120, 170), (4, 6, 24, 18), 1, border_radius=4)
     drop_path = save_asset(f"drone_drop_{ASSET_VERSION}.png", drop)
 
-    # Tree
-    tree = pygame.Surface((52, 78), pygame.SRCALPHA)
-    pygame.draw.rect(tree, (90, 60, 30), (22, 56, 8, 16))
-    pygame.draw.polygon(tree, (15, 105, 45), [(26, 6), (4, 44), (48, 44)])
-    pygame.draw.polygon(tree, (25, 125, 55), [(26, 20), (2, 58), (50, 58)])
-    pygame.draw.polygon(tree, (35, 145, 65), [(26, 36), (0, 72), (52, 72)])
-    pygame.draw.circle(tree, (230, 240, 245), (18, 24), 3)
-    pygame.draw.circle(tree, (230, 240, 245), (36, 32), 2)
+    # Tree (plus details)
+    tree = pygame.Surface((56, 84), pygame.SRCALPHA)
+    pygame.draw.rect(tree, (90, 60, 30), (24, 60, 8, 18))
+    pygame.draw.polygon(tree, (15, 105, 45), [(28, 8), (4, 46), (52, 46)])
+    pygame.draw.polygon(tree, (25, 125, 55), [(28, 22), (2, 60), (54, 60)])
+    pygame.draw.polygon(tree, (35, 145, 65), [(28, 38), (0, 76), (56, 76)])
+    pygame.draw.circle(tree, (230, 240, 245), (20, 26), 3)
+    pygame.draw.circle(tree, (230, 240, 245), (38, 34), 2)
+    pygame.draw.line(tree, (10, 80, 35), (28, 12), (12, 42), 2)
+    pygame.draw.line(tree, (20, 100, 45), (28, 26), (16, 58), 2)
     tree_path = save_asset(f"tree_{ASSET_VERSION}.png", tree)
 
-    # Yeti
-    yeti = pygame.Surface((54, 72), pygame.SRCALPHA)
-    pygame.draw.ellipse(yeti, (235, 235, 240), (4, 14, 46, 52))  # body
-    pygame.draw.ellipse(yeti, (210, 210, 220), (10, 20, 34, 38))  # chest
-    pygame.draw.circle(yeti, (235, 235, 240), (27, 12), 10)  # head
-    pygame.draw.circle(yeti, (200, 200, 210), (22, 12), 4)  # left eye bg
-    pygame.draw.circle(yeti, (200, 200, 210), (32, 12), 4)  # right eye bg
-    pygame.draw.circle(yeti, (40, 40, 40), (22, 12), 2)  # left eye
-    pygame.draw.circle(yeti, (40, 40, 40), (32, 12), 2)  # right eye
-    pygame.draw.arc(yeti, (60, 60, 60), (20, 16, 14, 8), 0, math.pi, 2)  # mouth
-    pygame.draw.rect(yeti, (180, 180, 190), (14, 46, 12, 18))  # legs
-    pygame.draw.rect(yeti, (180, 180, 190), (28, 46, 12, 18))
-    yeti_path = save_asset(f"yeti_{ASSET_VERSION}.png", yeti)
+    # Yeti (tiles)
+    yeti_paths = []
+    tile_yeti = ["tile_0078.png", "tile_0079.png", "tile_0080.png"]
+    if all(os.path.exists(os.path.join(tile_dir, t)) for t in tile_yeti):
+        yeti_paths = [os.path.join(tile_dir, t) for t in tile_yeti]
+    else:
+        yeti = pygame.Surface((54, 72), pygame.SRCALPHA)
+        pygame.draw.ellipse(yeti, (235, 235, 240), (4, 14, 46, 52))  # body
+        pygame.draw.ellipse(yeti, (210, 210, 220), (10, 20, 34, 38))  # chest
+        pygame.draw.circle(yeti, (235, 235, 240), (27, 12), 10)  # head
+        pygame.draw.circle(yeti, (200, 200, 210), (22, 12), 4)  # left eye bg
+        pygame.draw.circle(yeti, (200, 200, 210), (32, 12), 4)  # right eye bg
+        pygame.draw.circle(yeti, (40, 40, 40), (22, 12), 2)  # left eye
+        pygame.draw.circle(yeti, (40, 40, 40), (32, 12), 2)  # right eye
+        pygame.draw.arc(yeti, (60, 60, 60), (20, 16, 14, 8), 0, math.pi, 2)  # mouth
+        pygame.draw.rect(yeti, (180, 180, 190), (14, 46, 12, 18))  # legs
+        pygame.draw.rect(yeti, (180, 180, 190), (28, 46, 12, 18))
+        yeti_paths = [save_asset(f"yeti_{ASSET_VERSION}.png", yeti)]
 
-    # Background tile
+    # Background tile (piste de ski plus propre)
     bg = pygame.Surface((200, 200))
     for i in range(200):
-        shade = 228 + int(16 * (i / 200))
+        shade = 228 + int(18 * (i / 200))
         bg.fill((shade, shade + 6, 255), rect=pygame.Rect(0, i, 200, 1))
-    for i in range(0, 200, 14):
-        shade = 235 + (i % 20)
-        line_col = (shade, min(255, shade + 6), 255)
-        pygame.draw.line(bg, line_col, (0, i), (200, i), 2)
+
+    # bandes damier plus fines
+    for i in range(0, 200, 20):
+        col = (236, 244, 255) if (i // 20) % 2 == 0 else (222, 232, 248)
+        pygame.draw.rect(bg, col, (0, i, 200, 10))
+
+    # traces de ski en S leger
+    for x in range(-30, 230, 35):
+        pygame.draw.line(bg, (210, 222, 238), (x, 0), (x + 70, 200), 2)
+        pygame.draw.line(bg, (240, 248, 255), (x + 4, 0), (x + 74, 200), 1)
+
     random.seed(4)
-    for _ in range(90):
+    for _ in range(60):
         x = random.randint(0, 199)
         y = random.randint(0, 199)
         pygame.draw.circle(bg, (245, 250, 255), (x, y), random.randint(1, 2))
@@ -134,13 +173,13 @@ def ensure_assets():
 
     return {
         "skier": skier_paths,
-        "rock": rock_path,
+        "rock": rock_paths,
         "bonus": bonus_path,
         "speed_boost": speed_boost_path,
         "drone": drone_path,
         "drop": drop_path,
         "tree": tree_path,
-        "yeti": yeti_path,
+        "yeti": yeti_paths,
         "bg_tile": bg_path,
     }
 
@@ -148,12 +187,12 @@ def ensure_assets():
 def load_images(asset_paths):
     return {
         "skier": [pygame.image.load(p).convert_alpha() for p in asset_paths["skier"]],
-        "rock": pygame.image.load(asset_paths["rock"]).convert_alpha(),
+        "rock": [pygame.image.load(p).convert_alpha() for p in asset_paths["rock"]],
         "bonus": pygame.image.load(asset_paths["bonus"]).convert_alpha(),
         "speed_boost": pygame.image.load(asset_paths["speed_boost"]).convert_alpha(),
         "drone": pygame.image.load(asset_paths["drone"]).convert_alpha(),
         "drop": pygame.image.load(asset_paths["drop"]).convert_alpha(),
         "tree": pygame.image.load(asset_paths["tree"]).convert_alpha(),
-        "yeti": pygame.image.load(asset_paths["yeti"]).convert_alpha(),
+        "yeti": [pygame.image.load(p).convert_alpha() for p in asset_paths["yeti"]],
         "bg_tile": pygame.image.load(asset_paths["bg_tile"]).convert(),
     }
