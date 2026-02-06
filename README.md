@@ -88,3 +88,4 @@ Tuto/Aide:
 
 https://www.w3schools.com/python/
 Youtube
+https://jeux.developpez.com/
