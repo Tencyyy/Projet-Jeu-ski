@@ -1,90 +1,195 @@
-Projet du groupe 1 - Jeux olympiques d'hiver 2026
+# 🎿 JO d'Hiver 2026 - Ski Runner
 
-Michel
-Stephen
-..
-..
+Un jeu de ski olympique développé par le Groupe 1, inspiré des Jeux Olympiques de Milano-Cortina 2026.
 
+## 🎮 Description
 
-Contexte:
+Ski Runner est un jeu de course de ski avec plusieurs modes de jeu, incluant un mode Triathlon Olympique avec classement et médailles !
 
-Jeu de ski type "runner": on descend la piste, on doit passer entre des portes
-(couloirs d'obstacles) pour marquer des points. Si on rate le couloir, c'est game over.
+### Fonctionnalités principales
+- ✅ **Mode JO (Triathlon)** : 5 niveaux de difficulté croissante avec classement final
+- ✅ **Mode Entraînement** : 
+  - 🎿 Course de ski (slalom)
+  - 🥌 **Curling** (NOUVEAU !)
+  - 🎯 **Biathlon** (NOUVEAU !)
+- ✅ **Système de classement** : Or 🥇, Argent 🥈, Bronze 🥉
+- ✅ **Effets sonores** : Support pour musiques et sons personnalisés
+- ✅ **Menu interactif** : Navigation fluide avec animations
+- ✅ **Mode plein écran** : S'adapte à votre résolution d'écran
 
+## 📁 Structure du Projet
 
-Objectifs simples:
-- Avoir un jeu qui se lance sans erreur.
-- Pouvoir jouer: bouger, eviter les obstacles, gagner des points.
-- Avoir un menu, une pause, et un ecran de fin.
-- Avoir au moins une image de depart et, si possible, un son.
+```
+winter_olympics_game_final/
+│
+├── winter_runner.py          # ⭐ FICHIER PRINCIPAL - Lance le jeu
+├── requirements.txt          # Dépendances Python
+├── README.md                # Ce fichier
+│
+├── game/                    # Code source du jeu
+│   ├── __init__.py
+│   ├── main.py             # Boucle principale
+│   ├── config.py           # Configuration (résolution, FPS, etc.)
+│   ├── game_manager.py     # Logique du jeu (ski)
+│   ├── curling.py          # 🥌 Mode Curling (NOUVEAU !)
+│   ├── biathlon.py         # 🎯 Mode Biathlon (NOUVEAU !)
+│   ├── menu.py             # Système de menus
+│   ├── entities.py         # Entités (joueur, obstacles, etc.)
+│   ├── assets.py           # Chargement des ressources
+│   └── audio.py            # Système audio
+│
+└── assets/                 # Ressources du jeu
+    ├── music/              # 🎵 Mettez vos musiques ici
+    │   ├── menu_music.mp3  # (optionnel) Musique du menu
+    │   └── game_music.mp3  # (optionnel) Musique en jeu
+    │
+    ├── sounds/             # 🔊 Mettez vos effets sonores ici
+    │   ├── gate.wav        # (optionnel) Son de porte
+    │   ├── bonus.wav       # (optionnel) Son de bonus
+    │   ├── speed.wav       # (optionnel) Son de boost
+    │   └── rock.wav        # (optionnel) Son de collision
+    │
+    └── *.png               # Images du jeu (skieur, obstacles, etc.)
+```
 
-Prochain objectif (adapte):
-1) Version complete (dossier `game/` + lanceur `winter_runner.py`)
-- Gameplay: runner de ski avec obstacles, portes de sapins a traverser, bonus, drone et yeti.
-- Score + niveaux + vitesse qui augmente.
-- Ecrans: splash, menu, jeu, pause, game over, saisie de prenom + classement.
-- Audio: musiques + effets.
-- Assets: images/sons dans `assets/` charges par `game/assets.py`.
+## 🚀 Installation et Lancement
 
-Equipe (4 personnes) et repartition:
-1) Personne A (gameplay):
-   - Deplacements du joueur.
-   - Regles de collision (perdre si pas dans le couloir).
-   - Score (points quand on passe un couloir).
-2) Personne B (obstacles/level):
-   - Apparition des lignes d'obstacles.
-   - Taille du couloir et vitesse.
-   - Variations simples (couloir pas toujours au meme endroit).
-3) Personne C (interface):
-   - Menu de depart.
-   - Ecran pause et ecran game over.
-   - Affichage du score.
-4) Personne D (assets):
-   - Image de depart (fond menu).
-   - Sons si possible (facultatif).
-   - Organisation du dossier assets.
+### Prérequis
+- Python 3.8 ou supérieur
+- Pygame
 
-Plan sur 4 jours (adapte, jour 1 deja fait):
-Jour 1 - Fait:
-- Projet lance, pygame OK, base comprise.
-- Repartition A/B/C/D et checklist.
-- Gameplay de base: couloirs + score + game over + pause.
+### Installation
 
-Jour 2 - Gameplay avance:
-- Ajouter un yeti qui poursuit (simple: il se rapproche si on rate des couloirs).
-- Ajouter des obstacles differents (roches).
-- Remplacer le bonhomme par un skieur (image).
-- Tester les vitesses et difficulte.
+1. **Installer les dépendances** :
+```bash
+pip install -r requirements.txt
+```
 
-Jour 3 - Assets et decor:
-- Trouver de meilleurs assets (arbres, roches, skieur, yeti).
-- Remplacer les lignes par un decor (neige qui tombe ou sol neigeux).
-- Ajouter sapins de Noel sur les cotes.
-- Verifier que tout s'affiche sans lag.
+2. **Lancer le jeu** :
+```bash
+python winter_runner.py
+```
 
-Jour 4 - Esthetisme + finitions:
-- Focus sur le visuel (background, couleurs, animations simples).
-- Ajouter un classement + saisie de prenom (si possible).
-- Musique/sons legers.
-- Tests finaux et corrections.
+## 🎯 Comment Jouer
 
-Regles de travail:
-- Toujours tester souvent (petites modifications).
-- Si un bug apparait, revenir a la derniere version qui marchait.
-- Garder le code simple, pas besoin de fonctions compliquees.
-- Communiquer: chacun dit ce qu'il a fait en fin de journee.
+### Contrôles
+- **Flèches directionnelles** : Déplacer le skieur
+- **P ou Espace** : Mettre en pause
+- **R** : Rejouer après Game Over
+- **Entrée** : Valider les choix / Niveau suivant
+- **Échap** : Retour au menu / Quitter
 
-Lancer:
-  python main.py
+### Modes de Jeu
 
-Touches:
-- ENTREE: demarrer / revenir au menu
-- Fleches: bouger
-- P: pause
-- R: rejouer (apres game over)
-- ECHAP: quitter
+#### 🏆 Mode JO (Triathlon)
+- Complétez 5 niveaux de difficulté croissante
+- Évitez les obstacles (rochers, arbres)
+- Passez par les portes pour marquer des points
+- Collectez les bonus pour des effets spéciaux
+- Attention au Yeti à partir du niveau 2 !
+- **Classement final avec médailles** : Or, Argent, Bronze
 
-Tuto/Aide:
+#### 🏃 Mode Entraînement
 
-https://www.w3schools.com/python/
-Youtube
+##### 🎿 Course de ski
+- Entraînez-vous sur un seul niveau
+- Même gameplay que le Mode JO
+- Pas de classement
+
+##### 🥌 Curling (NOUVEAU !)
+- Lancez une pierre de curling vers le centre de la cible
+- 3 lancers pour marquer le maximum de points
+- Contrôlez l'angle et la puissance
+- **Objectif** : Toucher le centre (100 points)
+- Temps limite : 12 secondes
+
+##### 🎯 Biathlon (NOUVEAU !)
+- Tirez sur 5 cibles avec un arc
+- Déplacez le réticule et ajustez la puissance
+- 5 tirs maximum
+- **Objectif** : Toucher toutes les cibles
+- Temps limite : 20 secondes
+
+➡️ **Voir le guide complet** : `GUIDE_CURLING_BIATHLON.md`
+
+### Système de Points
+- **Portes réussies** : +20 points
+- **Bonus collectés** : +10 points + effet spécial
+- **Temps de course** : Bonus si vous terminez rapidement
+- **Pénalités** : -15 points par obstacle touché
+
+### Bonus Spéciaux
+- ⚡ **Boost de vitesse** : Accélération temporaire
+- 🌙 **Moonwalk** : Ralentissement du temps
+
+## ⚙️ Configuration
+
+Éditez le fichier `game/config.py` pour personnaliser :
+
+```python
+# Mode d'affichage
+FULLSCREEN = True  # True pour plein écran, False pour mode fenêtré
+
+# Résolution (en mode fenêtré)
+SCREEN_WIDTH = 960
+SCREEN_HEIGHT = 640
+
+# Performance
+FPS = 60
+```
+
+## 🎵 Ajouter vos Musiques et Sons
+
+### Musiques
+Placez vos fichiers audio dans `assets/music/` :
+- `menu_music.mp3` (ou `.ogg`, `.wav`) : Musique du menu
+- `game_music.mp3` (ou `.ogg`, `.wav`) : Musique en jeu
+
+### Effets Sonores
+Placez vos fichiers dans `assets/sounds/` :
+- `gate.wav` : Son de passage de porte
+- `bonus.wav` : Son de collecte de bonus
+- `speed.wav` : Son d'activation de boost
+- `rock.wav` : Son de collision
+- `curling_slide.wav` : Son de curling
+- `arrow_shot.wav` : Son de tir
+- `game_over.wav` : Son de fin de partie
+- `pause.wav` : Son de pause
+- `resume.wav` : Son de reprise
+
+**Note** : Si les fichiers n'existent pas, le jeu utilisera des sons générés automatiquement.
+
+## 🏅 Système de Classement
+
+En **Mode JO**, terminez les 5 niveaux pour enregistrer votre score :
+1. Entrez votre prénom
+2. Votre score et temps sont enregistrés
+3. Le classement affiche les 3 meilleurs joueurs avec :
+   - 🥇 Médaille d'Or (1er)
+   - 🥈 Médaille d'Argent (2e)
+   - 🥉 Médaille de Bronze (3e)
+
+## 🐛 Dépannage
+
+### Le jeu ne démarre pas
+- Vérifiez que Python 3.8+ est installé : `python --version`
+- Installez pygame : `pip install pygame`
+
+### Pas de son
+- Vérifiez que pygame.mixer est initialisé
+- Ajoutez vos fichiers audio dans les dossiers `music/` et `sounds/`
+- Le jeu fonctionnera avec des sons générés si aucun fichier n'est trouvé
+
+### Mode plein écran qui ne fonctionne pas
+- Changez `FULLSCREEN = False` dans `game/config.py`
+- Relancez le jeu
+
+## 👥 Crédits
+
+**Groupe 1** - JO d'Hiver 2026
+- Développement : Groupe 1
+- Inspiré par : Milano-Cortina 2026
+
+## 📝 Licence
+
+Projet éducatif - Tous droits réservés

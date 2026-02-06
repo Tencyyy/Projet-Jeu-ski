@@ -1,0 +1,293 @@
+╔══════════════════════════════════════════════════════════════╗
+║        🎉 NOUVEAUTÉS - CURLING & BIATHLON AJOUTÉS ! 🎉       ║
+╚══════════════════════════════════════════════════════════════╝
+
+📅 Date: 6 février 2026
+🎮 Version: 1.1 - Édition Complète
+
+═══════════════════════════════════════════════════════════════
+✨ CE QUI A ÉTÉ AJOUTÉ
+═══════════════════════════════════════════════════════════════
+
+🥌 MODE CURLING - MAINTENANT DISPONIBLE !
+───────────────────────────────────────────────────────────────
+
+Le mode Curling est maintenant 100% fonctionnel et jouable !
+
+Caractéristiques:
+  ✓ Lancer de pierre de curling
+  ✓ Contrôle de l'angle (-45° à +45°)
+  ✓ Jauge de puissance dynamique
+  ✓ Système de scoring basé sur la proximité
+  ✓ 3 lancers par partie
+  ✓ Timer de 12 secondes
+  ✓ Écran de fin avec évaluation
+  ✓ Physique réaliste (friction, inertie)
+
+Comment y accéder:
+  1. Menu principal → ENTRAINEMENT
+  2. Sélectionner "CURLING"
+  3. Suivre les instructions à l'écran
+
+
+🎯 MODE BIATHLON - MAINTENANT DISPONIBLE !
+───────────────────────────────────────────────────────────────
+
+Le mode Biathlon est maintenant 100% fonctionnel et jouable !
+
+Caractéristiques:
+  ✓ Tir à l'arc sur cibles
+  ✓ Réticule de visée déplaçable
+  ✓ Jauge de puissance pour le tir
+  ✓ 5 cibles de tailles aléatoires
+  ✓ 5 tirs maximum
+  ✓ Timer de 20 secondes
+  ✓ Statistiques de précision
+  ✓ Écran de fin avec évaluation
+
+Comment y accéder:
+  1. Menu principal → ENTRAINEMENT
+  2. Sélectionner "BIATHLON"
+  3. Suivre les instructions à l'écran
+
+
+═══════════════════════════════════════════════════════════════
+🎮 DÉTAILS TECHNIQUES
+═══════════════════════════════════════════════════════════════
+
+NOUVEAUX FICHIERS CRÉÉS
+───────────────────────────────────────────────────────────────
+
+✓ game/curling.py (13.5 KB)
+  → Module complet du mode Curling
+  → Classes: Stone, CurlingGame
+  → Gestion physique de la pierre
+  → Système de scoring
+  → Interface graphique
+
+✓ game/biathlon.py (15.9 KB)
+  → Module complet du mode Biathlon
+  → Classes: Target, Arrow, BiathlonGame
+  → Système de tir et collision
+  → Cibles aléatoires
+  → Interface graphique
+
+✓ GUIDE_CURLING_BIATHLON.md
+  → Guide complet des deux modes
+  → Contrôles détaillés
+  → Stratégies et conseils
+  → FAQ
+
+
+FICHIERS MODIFIÉS
+───────────────────────────────────────────────────────────────
+
+✓ game/main.py
+  → Ajout imports curling et biathlon
+  → Création des gestionnaires
+  → Gestion des états "curling" et "biathlon"
+  → Gestion des événements
+  → Mise à jour et affichage
+
+✓ README.md
+  → Mise à jour des fonctionnalités
+  → Ajout des nouveaux modes
+  → Structure mise à jour
+
+
+═══════════════════════════════════════════════════════════════
+🎯 CONTRÔLES
+═══════════════════════════════════════════════════════════════
+
+MODE CURLING
+───────────────────────────────────────────────────────────────
+Flèches ← →    Ajuster l'angle de lancement
+ESPACE         Charger la puissance (1ère fois)
+ESPACE         Lancer la pierre (2ème fois)
+ÉCHAP          Retour au menu
+
+
+MODE BIATHLON
+───────────────────────────────────────────────────────────────
+Flèches ↑↓←→   Déplacer le réticule de visée
+ESPACE         Charger la puissance (1ère fois)
+ESPACE         Tirer la flèche (2ème fois)
+ÉCHAP          Retour au menu
+
+
+═══════════════════════════════════════════════════════════════
+🏆 OBJECTIFS ET SCORING
+═══════════════════════════════════════════════════════════════
+
+CURLING
+───────────────────────────────────────────────────────────────
+Objectif: Atteindre le centre de la cible
+
+Scoring par distance:
+  • Centre (< 30px)     : 100 pts 🏆
+  • Très proche (30-60) : 80 pts  🥈
+  • Proche (60-90)      : 60 pts  🥉
+  • Moyen (90-120)      : 40 pts  ⭐
+  • Loin (120-150)      : 20 pts  •
+  • Très loin (> 150)   : 0 pt    ✗
+
+Meilleur score compte!
+
+
+BIATHLON
+───────────────────────────────────────────────────────────────
+Objectif: Toucher toutes les cibles (5/5)
+
+Évaluation:
+  • 5/5 cibles  : 🏆 Tireur d'élite !
+  • 4/5 cibles  : 🥈 Excellent !
+  • 3/5 cibles  : 🥉 Bon tir !
+  • < 3 cibles  : Entraînez-vous !
+
+Précision affichée en %
+
+
+═══════════════════════════════════════════════════════════════
+✅ TESTS ET VALIDATION
+═══════════════════════════════════════════════════════════════
+
+Les deux modes ont été testés pour:
+
+✓ Physique fonctionnelle
+  → Curling: Pierre glisse avec friction
+  → Biathlon: Flèches volent vers le réticule
+
+✓ Collisions détectées
+  → Curling: Pierre s'arrête aux limites
+  → Biathlon: Flèches touchent les cibles
+
+✓ Interface claire
+  → HUD avec infos en temps réel
+  → Instructions affichées
+  → Jauges de puissance visibles
+
+✓ Scoring correct
+  → Curling: Points selon distance
+  → Biathlon: Comptage des touches
+
+✓ Transitions fluides
+  → Retour au menu (ÉCHAP)
+  → Rejouer (R en fin de partie)
+  → Navigation sans bugs
+
+
+═══════════════════════════════════════════════════════════════
+📚 DOCUMENTATION
+═══════════════════════════════════════════════════════════════
+
+Pour plus d'informations, consultez:
+
+1. GUIDE_CURLING_BIATHLON.md
+   → Guide détaillé des deux modes
+   → Stratégies et astuces
+   → FAQ complète
+
+2. README.md (mis à jour)
+   → Vue d'ensemble du jeu complet
+   → Instructions d'installation
+   → Liste des fonctionnalités
+
+3. Code source
+   → game/curling.py (bien commenté)
+   → game/biathlon.py (bien commenté)
+
+
+═══════════════════════════════════════════════════════════════
+🎨 DESIGN ET GRAPHISMES
+═══════════════════════════════════════════════════════════════
+
+CURLING
+  • Piste de curling avec bordures
+  • Cible avec cercles concentriques (4 couleurs)
+  • Pierre bleue/rouge selon l'état
+  • Flèche de direction jaune
+  • Effets visuels de lancement
+
+BIATHLON
+  • Arrière-plan montagneux
+  • Cibles rouges avec cercles concentriques
+  • Cibles vertes quand touchées (avec X)
+  • Réticule rouge avec croix
+  • Flèches marron avec pointe grise
+  • Tireur stylisé en bas
+
+
+═══════════════════════════════════════════════════════════════
+🚀 PERFORMANCE
+═══════════════════════════════════════════════════════════════
+
+Les deux modes sont optimisés pour:
+
+✓ 60 FPS constant
+✓ Pas de ralentissement
+✓ Réactivité immédiate des contrôles
+✓ Pas de bugs graphiques
+✓ Compatibilité plein écran
+
+
+═══════════════════════════════════════════════════════════════
+🎁 BONUS
+═══════════════════════════════════════════════════════════════
+
+Ces modes incluent:
+
+✓ Effets sonores
+  → Lancement (curling_slide)
+  → Tir (arrow_shot)
+  → Touché (bonus)
+
+✓ Animations
+  → Jauge de puissance dynamique
+  → Flèche de visée (curling)
+  → Flash de touché (biathlon)
+
+✓ Feedback visuel
+  → Couleurs selon performance
+  → Messages d'encouragement
+  → Statistiques détaillées
+
+
+═══════════════════════════════════════════════════════════════
+❓ QUESTIONS FRÉQUENTES
+═══════════════════════════════════════════════════════════════
+
+Q: Comment basculer entre les modes?
+R: Via le menu ENTRAINEMENT, utilisez les flèches ↑↓ et ENTRÉE
+
+Q: Les scores sont-ils sauvegardés?
+R: Non, ce sont des modes d'entraînement. Seul le Mode JO sauvegarde.
+
+Q: Puis-je jouer plusieurs parties?
+R: Oui! Appuyez sur R après la fin pour rejouer.
+
+Q: Les musiques jouent-elles?
+R: Oui, la musique de jeu continue pendant ces modes.
+
+Q: Y a-t-il un classement?
+R: Non, ce sont des modes solo d'entraînement.
+
+
+═══════════════════════════════════════════════════════════════
+🎉 CONCLUSION
+═══════════════════════════════════════════════════════════════
+
+Le jeu est maintenant COMPLET avec:
+
+✅ Mode JO (Ski) - 5 niveaux + classement
+✅ Mode Curling - Entièrement jouable
+✅ Mode Biathlon - Entièrement jouable
+✅ Menu fonctionnel
+✅ Musiques et sons
+✅ Documentation complète
+
+TOUT FONCTIONNE ! 🎮🎉
+
+═══════════════════════════════════════════════════════════════
+
+Bon jeu ! 🎿🥌🎯
+Groupe 1 - JO d'Hiver 2026

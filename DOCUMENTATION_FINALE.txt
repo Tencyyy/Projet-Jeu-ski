@@ -1,0 +1,297 @@
+═══════════════════════════════════════════════════════════════
+   🎿 JO D'HIVER 2026 - SKI RUNNER - DOCUMENTATION FINALE 🎿
+═══════════════════════════════════════════════════════════════
+
+📦 CONTENU DU PACKAGE
+───────────────────────────────────────────────────────────────
+
+✅ Jeu complet et fonctionnel
+✅ Système de son intégré (musiques incluses !)
+✅ Menu interactif avec animations
+✅ Mode JO avec classement Or/Argent/Bronze 🥇🥈🥉
+✅ 5 niveaux de difficulté progressive
+✅ Documentation complète en français
+
+📂 STRUCTURE DU PROJET
+───────────────────────────────────────────────────────────────
+
+JO_Hiver_2026_SKI_RUNNER/
+│
+├── 📄 winter_runner.py          ⭐ FICHIER PRINCIPAL
+├── 📄 requirements.txt          Dépendances Python
+│
+├── 📖 README.md                 Guide principal complet
+├── 📖 LANCEMENT.txt             Démarrage rapide (ASCII)
+├── 📖 CLASSEMENT.md             Guide du système de classement
+├── 📄 STRUCTURE.txt             Arborescence du projet
+│
+├── 📁 game/                     Code source
+│   ├── main.py                  Boucle principale
+│   ├── config.py                Configuration
+│   ├── game_manager.py          Logique de jeu
+│   ├── menu.py                  Système de menus
+│   ├── entities.py              Entités (joueur, obstacles)
+│   ├── assets.py                Chargement ressources
+│   ├── audio.py                 Système audio
+│   └── __init__.py
+│
+└── 📁 assets/                   Ressources
+    ├── 📁 music/                🎵 Musiques (INCLUSES!)
+    │   ├── menu_music.mp3       Musique du menu
+    │   ├── game_music.mp3       Musique en jeu
+    │   └── README.md
+    │
+    ├── 📁 sounds/               🔊 Effets sonores
+    │   └── README.md            (Sons générés auto si vides)
+    │
+    ├── AJOUT_SONS.md            Guide complet audio
+    └── *.png                    60+ images (sprites)
+
+
+🎯 FONCTIONNALITÉS PRINCIPALES
+───────────────────────────────────────────────────────────────
+
+MODE JO (TRIATHLON OLYMPIQUE)
+  ✓ 5 niveaux de difficulté croissante
+  ✓ Score cumulatif sur tous les niveaux
+  ✓ Classement final avec top 3
+  ✓ Médailles : Or 🥇, Argent 🥈, Bronze 🥉
+  ✓ Enregistrement du nom du joueur
+  ✓ Affichage score + temps de course
+
+MODE ENTRAÎNEMENT
+  ✓ Pratique libre sur un seul niveau
+  ✓ Pas de classement
+  ✓ Modes Curling et Biathlon (à venir)
+
+SYSTÈME DE JEU
+  ✓ 5 niveaux progressifs (100m à 180m)
+  ✓ Obstacles variés (rochers, arbres, yetis)
+  ✓ Portes à franchir (+20 pts chacune)
+  ✓ Bonus avec effets spéciaux (+10 pts)
+  ✓ Système de collision et pénalités
+  ✓ Timer et limite de temps par niveau
+  ✓ Effets visuels (vignette, flocons)
+
+INTERFACE
+  ✓ Menu principal animé
+  ✓ HUD avec score, niveau, distance
+  ✓ Écran de pause
+  ✓ Écran de game over avec options
+  ✓ Saisie de nom interactive
+
+AUDIO
+  ✓ Musiques de fond (menu + jeu) INCLUSES
+  ✓ Effets sonores (générés automatiquement)
+  ✓ Support fichiers personnalisés (MP3, OGG, WAV)
+  ✓ Système de fallback intelligent
+
+
+⚡ LANCEMENT RAPIDE
+───────────────────────────────────────────────────────────────
+
+1. Extraire le fichier ZIP
+
+2. Ouvrir un terminal dans le dossier
+
+3. Installer pygame :
+   pip install pygame
+
+4. Lancer le jeu :
+   python winter_runner.py
+
+C'EST TOUT ! 🎮
+
+
+🎮 CONTRÔLES
+───────────────────────────────────────────────────────────────
+
+Flèches ← → ↑ ↓    Déplacer le skieur
+P ou Espace        Mettre en pause
+R                  Rejouer (après game over)
+Entrée             Valider / Niveau suivant
+Échap              Retour menu / Quitter
+
+
+🏆 SYSTÈME DE CLASSEMENT DÉTAILLÉ
+───────────────────────────────────────────────────────────────
+
+CALCUL DU SCORE
+  • Portes réussies : +20 points
+  • Bonus collectés : +10 points + effet
+  • Obstacles touchés : -15 points
+  • Bonus de temps si rapide
+
+ATTRIBUTION DES MÉDAILLES (MODE JO)
+  🥇 Or : 1ère place (meilleur score)
+  🥈 Argent : 2ème place
+  🥉 Bronze : 3ème place
+
+AFFICHAGE DU CLASSEMENT
+  Nom du joueur - Score total - Temps de course
+  Exemple : "Alice - 850 pts - 1:47.5"
+
+NIVEAUX PROGRESSIFS
+  Niveau 1 : 100m - Débutant
+  Niveau 2 : 120m - Amateur (1 Yeti)
+  Niveau 3 : 140m - Confirmé (2 Yetis)
+  Niveau 4 : 160m - Expert
+  Niveau 5 : 180m - Olympique ⭐
+
+
+⚙️ CONFIGURATION
+───────────────────────────────────────────────────────────────
+
+Éditer game/config.py pour modifier :
+
+AFFICHAGE
+  • FULLSCREEN = True/False
+  • SCREEN_WIDTH = 960
+  • SCREEN_HEIGHT = 640
+  • FPS = 60
+
+DIFFICULTÉ (par niveau)
+  • Vitesse de base et maximale
+  • Fréquence des obstacles
+  • Espacement des portes
+  • Score requis
+  • Temps limite
+
+
+🎵 AUDIO (INCLUS ET FONCTIONNEL !)
+───────────────────────────────────────────────────────────────
+
+MUSIQUES INCLUSES
+  ✓ menu_music.mp3 (3.7 MB) - Musique du menu
+  ✓ game_music.mp3 (3.7 MB) - Musique en jeu
+  → Lecture automatique en boucle !
+
+EFFETS SONORES
+  → Générés automatiquement (sons simples)
+  → Peuvent être remplacés par vos fichiers .wav/.ogg
+
+COMMENT AJOUTER VOS PROPRES SONS
+  1. Placez vos fichiers dans assets/music/ ou assets/sounds/
+  2. Nommez-les correctement (voir AJOUT_SONS.md)
+  3. Formats : MP3, OGG, WAV
+  4. Relancez le jeu !
+
+
+📋 FICHIERS DE DOCUMENTATION
+───────────────────────────────────────────────────────────────
+
+1. README.md
+   → Guide principal complet
+   → Installation, contrôles, modes de jeu
+   → Configuration et personnalisation
+
+2. LANCEMENT.txt
+   → Démarrage rapide en ASCII art
+   → Contrôles essentiels
+   → Dépannage rapide
+
+3. CLASSEMENT.md
+   → Guide détaillé du système de classement
+   → Calcul des scores et médailles
+   → Stratégies pour gagner
+   → Critères par niveau
+
+4. assets/AJOUT_SONS.md
+   → Guide complet pour l'audio
+   → Liste des sons attendus
+   → Formats et spécifications
+   → Outils recommandés
+
+5. assets/music/README.md
+   → Instructions pour musiques
+
+6. assets/sounds/README.md
+   → Instructions pour effets sonores
+
+
+🐛 DÉPANNAGE
+───────────────────────────────────────────────────────────────
+
+PROBLÈME : Le jeu ne démarre pas
+SOLUTION : 
+  • Vérifier Python 3.8+ installé
+  • Installer pygame : pip install pygame
+  • Vérifier les droits d'exécution
+
+PROBLÈME : Pas de musique
+SOLUTION :
+  • Normal ! Les musiques sont incluses
+  • Vérifier que les fichiers .mp3 sont dans assets/music/
+  • Volume système non muté
+
+PROBLÈME : Pas d'effets sonores
+SOLUTION :
+  • Normal si pas de fichiers dans assets/sounds/
+  • Le jeu génère des sons simples automatiquement
+  • Ajoutez vos .wav pour de meilleurs sons
+
+PROBLÈME : Écran noir en plein écran
+SOLUTION :
+  • Éditer game/config.py
+  • Changer FULLSCREEN = False
+  • Relancer le jeu
+
+PROBLÈME : Jeu trop rapide/lent
+SOLUTION :
+  • Éditer game/config.py
+  • Modifier FPS (30-120)
+  • Par défaut : 60 FPS
+
+
+✨ POINTS FORTS DU JEU
+───────────────────────────────────────────────────────────────
+
+✓ Code bien structuré et commenté
+✓ Séparation claire des responsabilités
+✓ Configuration centralisée
+✓ Système audio robuste avec fallback
+✓ Documentation complète en français
+✓ Prêt à jouer immédiatement
+✓ Facilement extensible
+✓ Musiques déjà incluses !
+
+
+🎯 POUR ALLER PLUS LOIN
+───────────────────────────────────────────────────────────────
+
+EXTENSIONS POSSIBLES
+  □ Implémenter le mode Curling
+  □ Implémenter le mode Biathlon
+  □ Ajouter plus de bonus
+  □ Créer de nouveaux obstacles
+  □ Système de succès/achievements
+  □ Sauvegarde permanente des scores
+  □ Mode multijoueur local
+  □ Plus de niveaux
+
+
+📊 STATISTIQUES DU PROJET
+───────────────────────────────────────────────────────────────
+
+Fichiers Python : 9
+Fichiers Markdown : 7
+Images (PNG) : 60+
+Musiques : 2 (7.4 MB total)
+Lignes de code : ~1500+
+Documentation : ~800+ lignes
+
+Taille totale : ~8 MB
+
+
+👥 CRÉDITS
+───────────────────────────────────────────────────────────────
+
+Développement : Groupe 1
+Événement : JO d'Hiver Milano-Cortina 2026
+Engine : Pygame (Python)
+Année : 2026
+
+
+═══════════════════════════════════════════════════════════════
+            BON JEU ! 🎿⛷️  VIVE LES JO ! 🏔️
+═══════════════════════════════════════════════════════════════
