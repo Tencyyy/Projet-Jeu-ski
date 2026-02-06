@@ -1,0 +1,93 @@
+╔══════════════════════════════════════════════════════════════╗
+║          🎿 JO D'HIVER 2026 - SKI RUNNER 🎿                 ║
+║                  DÉMARRAGE RAPIDE                            ║
+╚══════════════════════════════════════════════════════════════╝
+
+⚡ LANCER LE JEU
+═══════════════════════════════════════════════════════════════
+
+1. Ouvrir un terminal dans ce dossier
+
+2. Installer pygame (si pas déjà fait) :
+   pip install pygame
+
+3. Lancer le jeu :
+   python winter_runner.py
+
+
+🎮 CONTRÔLES
+═══════════════════════════════════════════════════════════════
+
+Flèches ← → ↑ ↓    Déplacer le skieur
+P ou Espace        Pause / Reprendre
+R                  Rejouer (après Game Over)
+Entrée             Valider / Niveau suivant
+Échap              Menu / Quitter
+
+
+🏆 MODES DE JEU
+═══════════════════════════════════════════════════════════════
+
+MODE JO (TRIATHLON)
+  → 5 niveaux de difficulté croissante
+  → Classement final avec médailles 🥇🥈🥉
+  → Enregistrez votre nom et score !
+
+MODE ENTRAÎNEMENT
+  → Pratique libre sur un seul niveau
+  → Modes Curling et Biathlon à venir
+
+
+📝 OBJECTIF
+═══════════════════════════════════════════════════════════════
+
+✓ Évitez les obstacles (rochers 🪨, arbres 🌲)
+✓ Passez par les portes 🚪 (+20 points)
+✓ Collectez les bonus ⭐ (+10 points + effet)
+✓ Terminez avant le temps limite ⏱️
+✓ Attention au Yeti à partir du niveau 2 ! 👹
+
+
+🎵 PERSONNALISATION (OPTIONNEL)
+═══════════════════════════════════════════════════════════════
+
+Ajoutez vos propres musiques et sons :
+
+📁 assets/music/
+   ├── menu_music.mp3    (Musique du menu)
+   └── game_music.mp3    (Musique en jeu)
+
+📁 assets/sounds/
+   ├── gate.wav          (Passage de porte)
+   ├── bonus.wav         (Collecte de bonus)
+   ├── speed.wav         (Boost)
+   └── rock.wav          (Collision)
+
+Formats supportés : MP3, OGG, WAV
+
+
+⚙️ CONFIGURATION
+═══════════════════════════════════════════════════════════════
+
+Éditez game/config.py pour modifier :
+  • FULLSCREEN = True/False (Plein écran)
+  • SCREEN_WIDTH / SCREEN_HEIGHT (Résolution)
+  • FPS (Images par seconde)
+
+
+🐛 PROBLÈMES ?
+═══════════════════════════════════════════════════════════════
+
+• Pas de son → Normal si aucun fichier audio ajouté
+              Des sons générés seront utilisés
+
+• Erreur au lancement → Vérifiez que pygame est installé
+                        pip install pygame
+
+• Mode plein écran → Changez FULLSCREEN = False
+                     dans game/config.py
+
+
+═══════════════════════════════════════════════════════════════
+          Bon jeu ! 🎿⛷️  Groupe 1 - 2026
+═══════════════════════════════════════════════════════════════

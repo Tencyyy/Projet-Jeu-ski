@@ -1,0 +1,193 @@
+╔════════════════════════════════════════════════════════════════╗
+║         STRUCTURE COMPLÈTE DU PROJET SKI RUNNER                ║
+╚════════════════════════════════════════════════════════════════╝
+
+📁 votre-projet/
+│
+├── 🚀 winter_runner.py          (LANCEUR - Démarrez avec ce fichier)
+│
+├── 📋 requirements.txt           (Dépendances Python)
+│
+├── 📖 Documentation/
+│   ├── README.md                (Guide complet du projet)
+│   ├── INSTRUCTIONS.md          (Démarrage rapide)
+│   ├── AMELIORATIONS.md         (Liste des changements v2.0)
+│   ├── GUIDE_TECHNIQUE.md       (Documentation technique)
+│   ├── ARCHITECTURE.md          (Schémas d'architecture)
+│   └── MUSIQUE_ET_PLEIN_ECRAN.md (Guide musique et plein écran)
+│
+├── 🎮 game/                     (MODULE PRINCIPAL DU JEU)
+│   ├── __init__.py              (Fichier module Python - vide)
+│   ├── config.py                (🔧 Configuration globale)
+│   │                            → FULLSCREEN = True/False
+│   │                            → Couleurs, dimensions, niveaux
+│   │
+│   ├── main.py                  (Boucle principale)
+│   │                            → Orchestration du jeu
+│   │                            → Gestion des états
+│   │
+│   ├── menu.py                  (Gestion des menus)
+│   │                            → Menu principal animé
+│   │                            → Menu d'entraînement
+│   │                            → Écrans de pause/fin
+│   │
+│   ├── game_manager.py          (Logique du jeu)
+│   │                            → Update (mise à jour)
+│   │                            → Collisions
+│   │                            → Score
+│   │
+│   ├── entities.py              (Entités du jeu)
+│   │                            → Player (joueur)
+│   │                            → Obstacle (rochers, glace)
+│   │                            → Gate (portes)
+│   │                            → Bonus (speed, moonwalk)
+│   │                            → Drone
+│   │                            → Yeti
+│   │
+│   ├── assets.py                (Génération des sprites)
+│   │                            → Création procédurale
+│   │                            → Chargement des images
+│   │
+│   └── audio.py                 (Gestion audio)
+│                                → Musiques (menu, jeu)
+│                                → Effets sonores
+│                                → Support musique personnalisée
+│
+└── 🎨 assets/                   (RESSOURCES - Créez ce dossier)
+    │
+    ├── 🎵 music/                (MUSIQUE PERSONNALISÉE - Optionnel)
+    │   │                        Créez ce dossier pour ajouter vos musiques
+    │   ├── menu_music.mp3       (Musique du menu)
+    │   └── game_music.mp3       (Musique du jeu)
+    │
+    ├── 🔊 sounds/               (SONS PERSONNALISÉS - Optionnel)
+    │   │                        Créez ce dossier pour ajouter vos sons
+    │   ├── gate.wav             (Passage de porte)
+    │   ├── bonus.wav            (Ramassage bonus)
+    │   ├── speed.wav            (Boost vitesse)
+    │   ├── rock.wav             (Collision rocher)
+    │   ├── game_over.wav        (Fin de partie)
+    │   └── ...autres sons...
+    │
+    └── 🖼️  Images générées/     (GÉNÉRÉ AUTOMATIQUEMENT)
+        │                        Ces fichiers sont créés par le jeu
+        ├── skier_0_v9.png       (Animation skieur - frame 1)
+        ├── skier_1_v9.png       (Animation skieur - frame 2)
+        ├── skier_2_v9.png       (Animation skieur - frame 3)
+        ├── skier_3_v9.png       (Animation skieur - frame 4)
+        ├── rock_0_v9.png        (Rocher variant 1)
+        ├── rock_1_v9.png        (Rocher variant 2)
+        ├── rock_2_v9.png        (Rocher variant 3)
+        ├── bonus_v9.png         (Bonus moonwalk)
+        ├── speed_boost_v9.png   (Boost de vitesse)
+        ├── drone_v9.png         (Drone)
+        ├── drone_drop_v9.png    (Bloc de glace)
+        ├── tree_v9.png          (Sapin)
+        ├── yeti_v9.png          (Yeti)
+        └── bg_tile_v9.png       (Tuile de fond)
+
+
+╔════════════════════════════════════════════════════════════════╗
+║                    CONFIGURATION RAPIDE                        ║
+╚════════════════════════════════════════════════════════════════╝
+
+🎵 AJOUTER VOTRE MUSIQUE :
+   1. Créez le dossier : assets/music/
+   2. Ajoutez vos fichiers :
+      - menu_music.mp3
+      - game_music.mp3
+   3. Lancez le jeu !
+
+🖥️  ACTIVER LE PLEIN ÉCRAN :
+   1. Ouvrez : game/config.py
+   2. Changez : FULLSCREEN = False → FULLSCREEN = True
+   3. Sauvegardez et relancez !
+
+🎮 LANCER LE JEU :
+   python winter_runner.py
+
+
+╔════════════════════════════════════════════════════════════════╗
+║                     TAILLE DES FICHIERS                        ║
+╚════════════════════════════════════════════════════════════════╝
+
+📦 Code Python (game/)          ~72 KB
+🖼️  Images générées (assets/)   ~500 KB
+🎵 Musiques (si ajoutées)       ~3-10 MB par fichier
+📖 Documentation                ~50 KB
+
+TOTAL : ~600 KB (sans musiques personnalisées)
+
+
+╔════════════════════════════════════════════════════════════════╗
+║                   FICHIERS PRINCIPAUX                          ║
+╚════════════════════════════════════════════════════════════════╝
+
+POINT D'ENTRÉE :
+  winter_runner.py          → Lance le jeu
+
+CONFIGURATION :
+  game/config.py            → Modifiez les paramètres ici
+
+LOGIQUE :
+  game/main.py              → Boucle principale
+  game/game_manager.py      → Logique du jeu
+  game/menu.py              → Interface menus
+
+CONTENU :
+  game/entities.py          → Joueur, obstacles, bonus
+  game/assets.py            → Génération des sprites
+  game/audio.py             → Sons et musiques
+
+DOCUMENTATION :
+  README.md                 → Guide complet
+  MUSIQUE_ET_PLEIN_ECRAN.md → Guide musique/plein écran
+
+
+╔════════════════════════════════════════════════════════════════╗
+║                  ÉTAPES D'INSTALLATION                         ║
+╚════════════════════════════════════════════════════════════════╝
+
+1. 📦 Installer Python 3.7+
+   → https://www.python.org/downloads/
+
+2. 🔧 Installer Pygame
+   pip install pygame
+
+3. 📥 Télécharger tous les fichiers
+   → Respecter la structure ci-dessus
+
+4. 🎵 (Optionnel) Ajouter vos musiques
+   → Créer assets/music/
+   → Ajouter menu_music.mp3 et game_music.mp3
+
+5. 🚀 Lancer le jeu
+   python winter_runner.py
+
+
+╔════════════════════════════════════════════════════════════════╗
+║                      AIDE RAPIDE                               ║
+╚════════════════════════════════════════════════════════════════╝
+
+❓ Le jeu ne démarre pas ?
+   → Vérifiez que pygame est installé
+   → Vérifiez que tous les fichiers sont présents
+
+❓ Pas de musique ?
+   → Normal si vous n'avez pas ajouté de fichiers
+   → Le jeu génère des sons automatiquement
+
+❓ Erreur "No module named 'game'" ?
+   → Vérifiez que le dossier game/ existe
+   → Vérifiez que __init__.py est dans game/
+
+❓ Images manquantes ?
+   → Normal au premier lancement
+   → Le jeu les génère automatiquement dans assets/
+
+
+Pour plus d'aide, consultez README.md ou INSTRUCTIONS.md
+
+═══════════════════════════════════════════════════════════════════
+              🎿 Bon ski et amusez-vous bien ! 🏆
+═══════════════════════════════════════════════════════════════════
